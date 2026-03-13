@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Star shape representing "Astra" (star in Latin) -->
+  <path d="M50 10 L58 38 L88 38 L64 56 L72 84 L50 66 L28 84 L36 56 L12 38 L42 38 Z" fill="url(#grad1)"/>
+  <!-- Inner glow -->
+  <circle cx="50" cy="50" r="15" fill="#fff" opacity="0.3"/>
+</svg>

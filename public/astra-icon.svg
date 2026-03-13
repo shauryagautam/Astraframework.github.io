@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" fill="none">
+  <defs>
+    <linearGradient id="blue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Central Sword/Blade -->
+  <path d="M100 10 L110 50 L105 150 L100 270 L95 150 L90 50 Z" fill="url(#blue)" stroke="#60a5fa" stroke-width="2"/>
+  <path d="M100 10 L105 30 L100 50 L95 30 Z" fill="#fff" opacity="0.8"/>
+  
+  <!-- Wings Left -->
+  <path d="M90 80 Q60 70 40 85 Q30 95 35 105 Q45 110 60 105 Q75 100 85 95 Z" fill="url(#gold)" stroke="#d97706" stroke-width="1.5"/>
+  <path d="M85 95 Q55 85 35 100 Q25 110 30 120 Q40 125 55 120 Q70 115 80 110 Z" fill="url(#gold)" stroke="#d97706" stroke-width="1.5" opacity="0.8"/>
+  <path d="M80 110 Q50 100 30 115 Q20 125 25 135 Q35 140 50 135 Q65 130 75 125 Z" fill="url(#gold)" stroke="#d97706" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- Wings Right -->
+  <path d="M110 80 Q140 70 160 85 Q170 95 165 105 Q155 110 140 105 Q125 100 115 95 Z" fill="url(#gold)" stroke="#d97706" stroke-width="1.5"/>
+  <path d="M115 95 Q145 85 165 100 Q175 110 170 120 Q160 125 145 120 Q130 115 120 110 Z" fill="url(#gold)" stroke="#d97706" stroke-width="1.5" opacity="0.8"/>
+  <path d="M120 110 Q150 100 170 115 Q180 125 175 135 Q165 140 150 135 Q135 130 125 125 Z" fill="url(#gold)" stroke="#d97706" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- Eye -->
+  <ellipse cx="100" cy="140" rx="25" ry="18" fill="#1e293b" stroke="url(#gold)" stroke-width="2"/>
+  <ellipse cx="100" cy="140" rx="12" ry="12" fill="url(#blue)"/>
+  <circle cx="100" cy="138" r="6" fill="#fff"/>
+  
+  <!-- Eye Lines -->
+  <line x1="75" y1="140" x2="55" y2="145" stroke="url(#blue)" stroke-width="2"/>
+  <line x1="75" y1="135" x2="55" y2="130" stroke="url(#blue)" stroke-width="2"/>
+  <line x1="75" y1="145" x2="55" y2="155" stroke="url(#blue)" stroke-width="2"/>
+  <line x1="125" y1="140" x2="145" y2="145" stroke="url(#blue)" stroke-width="2"/>
+  <line x1="125" y1="135" x2="145" y2="130" stroke="url(#blue)" stroke-width="2"/>
+  <line x1="125" y1="145" x2="145" y2="155" stroke="url(#blue)" stroke-width="2"/>
+  
+  <!-- Sword Guard -->
+  <rect x="85" y="75" width="30" height="8" rx="2" fill="url(#gold)" stroke="#d97706" stroke-width="1.5"/>
+  <circle cx="85" cy="79" r="4" fill="url(#blue)"/>
+  <circle cx="115" cy="79" r="4" fill="url(#blue)"/>
+</svg>
