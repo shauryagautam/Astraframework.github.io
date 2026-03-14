@@ -1,73 +1,100 @@
-# React + TypeScript + Vite
+# Astra Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive web application built with React, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Visit the website at: [https://shauryagautam.github.io/Astra-web](https://shauryagautam.github.io/Astra-web)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Modern Design**: Clean, responsive interface with smooth animations
+- **Built with React**: Component-based architecture for maintainability
+- **TypeScript**: Type-safe development for better code quality
+- **Tailwind CSS**: Utility-first styling for rapid development
+- **Framer Motion**: Beautiful animations and transitions
+- **React Router**: Client-side routing for seamless navigation
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v18 or higher)
+- npm, yarn, or bun
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/Astra-web.git
+cd Astra-web
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+bun install
 ```
+
+3. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+# or
+bun dev
+```
+
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## 📦 Build for Production
+
+```bash
+npm run build
+# or
+yarn build
+# or
+bun build
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+## 🌍 Deployment
+
+This project is configured to deploy on GitHub Pages. The build process automatically handles:
+
+- Optimized production builds
+- Asset optimization
+- Proper base URL configuration for GitHub Pages
+
+### Manual Deployment
+
+To deploy manually to GitHub Pages:
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Deploy the `dist` folder to your GitHub Pages repository.
+
+## 🛠️ Technologies Used
+
+- **React 19** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **Lucide React** - Icons
+- **React Router** - Navigation
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
