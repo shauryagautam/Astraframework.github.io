@@ -1,4 +1,3 @@
-FILE: /docs/migrations
 
 # Database Migrations
 

@@ -1,4 +1,3 @@
-FILE: /docs/quickstart
 
 # Quickstart
 
@@ -88,18 +87,20 @@ r.Get("/greet", func(c *http.Context) error {
 Test it with a parameter:
 `curl http://localhost:8080/api/greet?name=Astra`
 
+::: summary
 ## What just happened?
 
 - You installed the **Astra CLI**.
 - You used the **Standard Project Layout**.
 - You started a **Hot-Reloading** server.
 - You used the **Ergonomic Context** to return JSON and read queries.
+:::
 
 ## Next Steps
 
 Now that you've got the basics down, it's time to dive deeper into how Astra works.
 
-- [Installation Guide](/docs/installation) — Learn more about requirements and configuration.
-- [Folder Structure](/docs/folder-structure) — Explore the anatomy of an Astra app.
-- [Routing](/docs/routing) — Master groups, params, and named routes.
-- [Database & ORM](/docs/orm) — Seamlessly connect to your data.
+- [Installation Guide](/docs/introduction/installation) — Learn more about requirements and configuration.
+- [Folder Structure](/docs/introduction/folder-structure) — Explore the anatomy of an Astra app.
+- [Routing](/docs/core-concepts/routing) — Master groups, params, and named routes.
+- [Database & ORM](/docs/database/orm) — Seamlessly connect to your data.

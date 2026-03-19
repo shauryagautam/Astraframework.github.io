@@ -1,4 +1,3 @@
-FILE: /docs/observability
 
 # Observability & Monitoring
 

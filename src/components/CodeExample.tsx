@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Share2, Database, ShieldCheck, Zap, Copy, Check } from 'lucide-react';
+import { Code, Share2, Database, ShieldCheck, Zap } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useTheme } from '../context/ThemeContext';
+import { CopyButton } from './shared/CopyButton';
 
 const examples = [
   {
@@ -86,31 +87,6 @@ admin.Get("/dashboard", func(c *astra.Context) error {
   }
 ];
 
-const CopyButton = ({ text }: { text: string }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <motion.button
-      onClick={handleCopy}
-      className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      {copied ? (
-        <><Check size={12} /> Copied</>
-      ) : (
-        <><Copy size={12} /> Copy</>
-      )}
-    </motion.button>
-  );
-};
-
 export const CodeExample = () => {
   const [activeTab, setActiveTab] = useState(examples[0].id);
   const activeExample = examples.find(e => e.id === activeTab)!;
@@ -124,11 +100,11 @@ export const CodeExample = () => {
     )}>
       <div className="grid-background-dark absolute inset-0 opacity-10" />
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+      <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-0">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-8">
           <div className="flex flex-col">
             <span className="text-[10px] text-[#8A8A8A] mb-2 uppercase tracking-widest">Showcase</span>
-            <h2 className="text-5xl md:text-7xl">BUILD WITH<br />GO.</h2>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl">BUILD WITH<br />GO.</h2>
           </div>
           <div className="flex flex-wrap gap-2">
             {examples.map((example) => (
@@ -192,7 +168,7 @@ export const CodeExample = () => {
                 <div className="flex items-center gap-4 text-xs font-mono text-white/40">
                   <span className="flex items-center gap-1"><Share2 size={12} /> main.go</span>
                 </div>
-                <CopyButton text={activeExample.code} />
+                <CopyButton text={activeExample.code} className="px-3 py-1.5 h-auto text-xs font-medium" />
               </div>
               <div className="p-8 font-mono text-sm overflow-x-auto">
                 <AnimatePresence mode="wait">

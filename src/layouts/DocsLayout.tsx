@@ -11,6 +11,8 @@ interface LayoutProps {
   children: ReactNode;
 }
 
+import { TableOfContents } from '../components/TableOfContents';
+
 export const DocsLayout = ({ children }: LayoutProps) => {
   const { theme } = useTheme();
   const isGlass = theme === 'liquid-glass';
@@ -20,74 +22,82 @@ export const DocsLayout = ({ children }: LayoutProps) => {
     <div className="min-h-screen bg-[var(--t-bg)] text-[var(--t-text)] transition-colors duration-400 flex flex-col">
       {isGlass && (
         <div className="liquid-glass-bg" aria-hidden="true">
-          <div className="liquid-glass-orb-1" />
-          <div className="liquid-glass-orb-2" />
+          <div className="liquid-glass-orb-1 opacity-20" />
+          <div className="liquid-glass-orb-2 opacity-20" />
         </div>
       )}
       <Grain />
       <Header />
       
-      <div className="flex-1 flex flex-col lg:flex-row max-w-screen-2xl mx-auto w-full pt-20">
-        {/* Mobile Sidebar Toggle */}
-        <button 
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="lg:hidden fixed bottom-10 right-10 z-50 p-5 rounded-2xl bg-[var(--t-accent)] text-[var(--t-accent-text)] shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-transform active:scale-95"
-        >
-          {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
+      <div className="flex-1 flex max-w-[1600px] mx-auto w-full pt-16 md:pt-20 px-4 md:px-8 relative gap-8 lg:gap-12">
         {/* Sidebar */}
-        <div className={cn(
-          "fixed inset-0 z-40 lg:relative lg:z-0 lg:block transition-all duration-500 ease-in-out",
-          isSidebarOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0 lg:translate-x-0 lg:opacity-100"
+        <aside className={cn(
+          "fixed inset-0 z-40 md:sticky md:top-20 md:h-[calc(100vh-5rem)] md:block transition-all duration-500 ease-in-out",
+          isSidebarOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0 pointer-events-none md:pointer-events-auto",
+          "md:translate-x-0 md:opacity-100"
         )}>
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm lg:hidden" onClick={() => setIsSidebarOpen(false)} />
-          <div className="relative w-72 h-full bg-[var(--t-bg)] border-r border-[var(--t-border)] shadow-2xl lg:shadow-none">
-             <DocsSidebar />
+          <div className={cn(
+            "absolute inset-0 bg-black/60 backdrop-blur-sm md:hidden transition-opacity duration-500",
+            isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          )} onClick={() => setIsSidebarOpen(false)} />
+          <div className="relative w-64 h-full bg-[var(--t-bg)] border-r border-[var(--t-border)] shadow-2xl md:shadow-none md:border-none">
+             <DocsSidebar onItemClick={() => setIsSidebarOpen(false)} />
           </div>
-        </div>
+        </aside>
 
-        {/* Main Content */}
-        <main className="flex-1 min-w-0 flex flex-col lg:flex-row">
-          <div className="flex-1 overflow-y-auto">
+        {/* Main Content Area */}
+        <main className="flex-1 min-w-0 flex flex-col lg:flex-row relative z-0 items-start">
+          <div className="flex-1 min-w-0 py-8 md:py-12">
             {children}
           </div>
           
-          {/* Table of Contents - Hidden on small screens */}
-          <aside className="hidden xl:block w-72 p-12 sticky top-20 h-[calc(100vh-80px)] overflow-y-auto border-l border-[var(--t-border)] bg-[var(--t-bg)]/50">
-            <h5 className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--t-text-muted)] mb-6">On this page</h5>
-            <nav className="space-y-4">
-               <div className="group flex items-center gap-3 text-xs text-[var(--t-text-secondary)] hover:text-[var(--t-accent)] cursor-pointer py-1 transition-all">
-                 <div className="w-1.5 h-1.5 rounded-full border border-[var(--t-border-strong)] group-hover:bg-[var(--t-accent)] group-hover:border-[var(--t-accent)] transition-all" />
-                 Introduction
-               </div>
+          <TableOfContents />
 
-               <div className="group flex items-center gap-3 text-xs text-[var(--t-accent)] font-bold py-1 transition-all">
-                 <div className="w-1.5 h-1.5 rounded-full bg-[var(--t-accent)]" />
-                 Configuration
-               </div>
-            </nav>
-
-            <div className="mt-20 p-6 rounded-2xl border border-[var(--t-border-strong)] bg-gradient-to-br from-[var(--t-accent)]/5 to-transparent">
-               <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--t-accent)] mb-2">Internal Alpha</p>
-               <p className="text-[11px] text-[var(--t-text-secondary)] leading-relaxed mb-4">
-                 Join the discussion on our private community.
-               </p>
-               <a href="#" className="text-[10px] font-bold uppercase border-b border-[var(--t-accent)] pb-0.5 hover:text-[var(--t-accent)] transition-colors">Join Discord &rarr;</a>
-            </div>
-          </aside>
+          {/* Mobile Sidebar Toggle */}
+          <button 
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="md:hidden fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[var(--t-accent)] text-[var(--t-accent-text)] shadow-xl hover:scale-110 active:scale-95 transition-all"
+            aria-label="Toggle Sidebar"
+          >
+            {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </main>
       </div>
 
-      <footer className="px-6 py-12 border-t border-[var(--t-border)] flex flex-col md:flex-row justify-between items-start gap-8 opacity-50 text-[10px] font-bold uppercase bg-[var(--t-bg)] z-10">
-        <div className="flex flex-col gap-1">
-          <span>ASTRA FRAMEWORK</span>
-          <span>&copy; 2026 OPEN SOURCE</span>
-        </div>
-        <div className="flex gap-8">
-          <a href="https://github.com/shauryagautam/Astra" className="hover:underline">GitHub</a>
-          <a href="#" className="hover:underline">Twitter</a>
-          <a href="#" className="hover:underline">Discord</a>
+      <footer className="px-8 py-12 border-t border-[var(--t-border)] bg-[var(--t-bg)] relative z-10 transition-colors duration-400">
+        <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+          <div className="space-y-4">
+             <div className="flex items-center gap-3">
+                <img src="/astra-icon.svg" alt="Astra" className="w-5 h-5 opacity-80" />
+                <span className="text-[11px] font-black uppercase tracking-tighter">Astra</span>
+             </div>
+             <p className="text-[10px] font-medium uppercase tracking-widest opacity-40 leading-relaxed max-w-[200px]">
+                Built for performance.
+             </p>
+             <div className="text-[9px] font-bold uppercase tracking-widest opacity-20">
+                &copy; 2026 Astra
+             </div>
+          </div>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-16">
+            <div className="space-y-4">
+               <h5 className="text-[10px] font-black uppercase tracking-widest opacity-20">Project</h5>
+               <nav className="flex flex-col gap-2.5 text-[11px] font-bold uppercase tracking-tighter">
+                  <a href="https://github.com/shauryagautam/Astra" className="hover:text-[var(--t-accent)] transition-colors">GitHub</a>
+                  <a href="/docs" className="hover:text-[var(--t-accent)] transition-colors">Documentation</a>
+                  <a href="/#showcase" className="hover:text-[var(--t-accent)] transition-colors">Showcase</a>
+               </nav>
+            </div>
+            
+            <div className="space-y-4">
+               <h5 className="text-[10px] font-black uppercase tracking-widest opacity-20">Community</h5>
+               <nav className="flex flex-col gap-2.5 text-[11px] font-bold uppercase tracking-tighter">
+                  <a href="https://discord.gg/astra" className="hover:text-[var(--t-accent)] transition-colors">Discord</a>
+                  <a href="https://x.com/Shaurya1309" className="hover:text-[var(--t-accent)] transition-colors uppercase">X (Twitter)</a>
+                  <a href="https://www.instagram.com/mr.shauryagautam" className="hover:text-[var(--t-accent)] transition-colors uppercase">Instagram</a>
+               </nav>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

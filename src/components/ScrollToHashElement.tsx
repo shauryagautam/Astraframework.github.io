@@ -6,10 +6,14 @@ export const ScrollToHashElement = () => {
 
   useEffect(() => {
     if (hash) {
-      const element = document.getElementById(hash.replace('#', ''));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      // Small timeout to allow content to render (especially with AnimatePresence)
+      const timer = setTimeout(() => {
+        const element = document.getElementById(hash.replace('#', ''));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

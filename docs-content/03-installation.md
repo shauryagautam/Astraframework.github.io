@@ -1,4 +1,3 @@
-FILE: /docs/installation
 
 # Installation
 
@@ -75,8 +74,9 @@ The CLI will watch for file changes in your project and restart the server autom
 ### 1. Database Connection Failures
 Ensure your database server is running and the `DATABASE_URL` in your `.env` correctly reflects your credentials.
 
-> [!TIP]
-> Astra uses `pgx` for PostgreSQL, which supports both DSN and URL formats.
+:::tip
+Astra uses `pgx` for PostgreSQL, which supports both DSN and URL formats.
+:::
 
 ### 2. Redis Missing
 If you see errors related to `queue` or `auth` during startup, check that Redis is accessible. Astra requires Redis for these services by default.

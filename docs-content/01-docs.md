@@ -1,10 +1,15 @@
-FILE: /docs
+---
+title: Welcome to Astra
+description: A high-performance Go framework for modern backend developers.
+order: 1
+category: introduction
+---
 
 # Introduction
 
 Astra is a modern, structured Go web framework designed for developers who value productivity, type safety, and clean architecture. It provides a batteries-included experience, offering a comprehensive suite of integrated tools—from routing and ORM to authentication and event-driven backgrounds—without the fragmentation of the typical Go micro-library ecosystem.
 
-## What kind of framework is Astra?
+
 
 Astra is a **full-stack, batteries-included framework**. Unlike many Go "routers" or "toolkits," Astra provides a high-level, opinionated architecture that handles the complexities of modern application development. It is built for building scaleable APIs, robust Server-Side Rendered (SSR) applications, and complex event-driven systems.
 
@@ -32,6 +37,7 @@ The Go ecosystem is rich with excellent libraries, but building a production app
 
 Astra solves this by providing **one official story**. We’ve done the hard work of integrating the best patterns for routing, data access, and security into a cohesive unit. When you use Astra, you’re not just using a library; you’re using a foundation built for engineers who want to ship software.
 
+::: summary
 ## What’s Included?
 
 Astra comes with everything you need to go from an idea to production:
@@ -42,11 +48,12 @@ Astra comes with everything you need to go from an idea to production:
 - **Background Jobs**: A Redis-backed queue system with support for delayed jobs, retries, and failed job management.
 - **Testing Suite**: Integration testing helpers that use Testcontainers to give you real Redis and Postgres environments for every test.
 - **Observability**: First-class integration with OpenTelemetry, structured logging, and automated request tracing.
+:::
 
 ## Next Steps
 
 Ready to build your first application?
 
-- [Quickstart](/docs/quickstart) — Get up and running in under 5 minutes.
-- [Installation](/docs/installation) — Deep dive into requirements and CLI setup.
-- [Architecture & Folder Structure](/docs/folder-structure) — Understand how Astra organizes your code.
+- [Quickstart](/docs/introduction/quickstart) — Get up and running in under 5 minutes.
+- [Installation](/docs/introduction/installation) — Deep dive into requirements and CLI setup.
+- [Architecture & Folder Structure](/docs/introduction/folder-structure) — Understand how Astra organizes your code.

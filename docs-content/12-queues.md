@@ -1,4 +1,3 @@
-FILE: /docs/queues
 
 # Background Jobs & Queues
 

@@ -1,4 +1,3 @@
-FILE: /docs/storage
 
 # File Storage
 

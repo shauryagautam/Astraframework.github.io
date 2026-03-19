@@ -1,4 +1,3 @@
-FILE: /docs/routing
 
 # Routing
 

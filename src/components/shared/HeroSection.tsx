@@ -50,7 +50,7 @@ export const HeroSection = ({
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-[12vw] md:text-[14vw] lg:text-[10vw] leading-[0.85] font-extrabold tracking-[-0.05em] mb-8"
+            className="text-[42px] xs:text-[52px] md:text-[8vw] lg:text-[7vw] leading-[0.85] font-extrabold tracking-[-0.05em] mb-8 lg:mb-12"
             dangerouslySetInnerHTML={{ __html: title }}
           />
         </div>
@@ -59,20 +59,20 @@ export const HeroSection = ({
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="w-full max-w-[500px] bg-black rounded-lg overflow-hidden border border-white/10 shadow-2xl"
+          className="w-full max-w-[500px] bg-black rounded-xl overflow-hidden border border-white/10 shadow-2xl"
         >
           <div className="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/10">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/50" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-              <div className="w-3 h-3 rounded-full bg-green-500/50" />
+            <div className="flex gap-1.5 md:gap-2">
+              <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500/50" />
+              <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500/50" />
+              <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500/50" />
             </div>
-            <span className="text-[10px] text-white/30 font-mono tracking-widest uppercase">Quickstart</span>
+            <span className="text-[9px] md:text-[10px] text-white/30 font-mono tracking-widest uppercase">Quickstart</span>
           </div>
-          <div className="p-6">
-            <div className="flex items-start gap-3 group">
-              <Terminal className="text-[#8A8A8A] mt-1 shrink-0" size={16} />
-              <code className="text-sm font-mono text-white/90 leading-relaxed break-all">
+          <div className="p-4 md:p-6">
+            <div className="flex items-start gap-2 md:gap-3 group">
+              <Terminal className="text-[#8A8A8A] mt-1 shrink-0" size={14} />
+              <code className="text-xs md:text-sm font-mono text-white/90 leading-relaxed break-all">
                 {quickstart}
               </code>
               <button 
@@ -84,24 +84,24 @@ export const HeroSection = ({
               </button>
             </div>
             <div className="mt-4 flex items-center gap-2">
-              <span className="text-green-500 font-mono text-sm leading-none">$</span>
-              <code className="text-sm font-mono text-white/50 italic"># Initialize your next project</code>
+              <span className="text-green-500 font-mono text-xs md:text-sm leading-none">$</span>
+              <code className="text-xs md:text-sm font-mono text-white/50 italic"># Initialize your next project</code>
             </div>
           </div>
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-auto border-t border-[var(--t-border-strong)] pt-12 pb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mt-auto border-t border-[var(--t-border-strong)] pt-8 md:pt-12 pb-8 md:pb-12 text-center sm:text-left">
         {features.map((feature, idx) => (
           <motion.div 
             key={idx}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.6 + (idx * 0.1) }}
-            className="flex flex-col"
+            className="flex flex-col items-center sm:items-start"
           >
-            <span className="text-xs font-bold mb-2">{feature.label}</span>
-            <p className="text-sm leading-relaxed max-w-[300px] text-[var(--t-text-secondary)]">
+            <span className="text-[10px] md:text-xs font-bold mb-2 uppercase tracking-wider">{feature.label}</span>
+            <p className="text-xs md:text-sm leading-relaxed max-w-[320px] text-[var(--t-text-secondary)]">
               {feature.description}
             </p>
           </motion.div>
@@ -111,11 +111,11 @@ export const HeroSection = ({
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="flex flex-col justify-end items-start md:items-end"
+          className="flex flex-col justify-end items-center sm:items-start lg:items-end w-full sm:col-span-2 lg:col-span-1"
         >
           <Link 
             to="/docs" 
-            className="bg-[var(--t-accent)] text-[var(--t-accent-text)] px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-[var(--t-accent-hover)] hover:text-[var(--t-accent-hover-text)] hover:ring-1 hover:ring-[var(--t-border-strong)] transition-all"
+            className="w-full sm:w-auto text-center bg-[var(--t-accent)] text-[var(--t-accent-text)] px-8 py-4 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-[var(--t-accent-hover)] hover:text-[var(--t-accent-hover-text)] hover:shadow-[0_0_20px_rgba(var(--t-accent-rgb),0.3)] transition-all"
           >
             Get Started
           </Link>

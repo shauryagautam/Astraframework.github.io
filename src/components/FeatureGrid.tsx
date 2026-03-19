@@ -30,7 +30,7 @@ export const FeatureGrid = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="flex flex-col">
             <span className="text-[10px] text-[#8A8A8A] mb-2 uppercase tracking-widest">Capabilities</span>
-            <h2 className="text-5xl md:text-7xl">FRAMEWORK.<br />FEATURES.</h2>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl">FRAMEWORK.<br />FEATURES.</h2>
           </div>
           <div className="text-left md:text-right max-w-[400px]">
             <p className="text-xs text-[#8A8A8A] uppercase leading-relaxed font-bold">
@@ -41,8 +41,7 @@ export const FeatureGrid = () => {
         </div>
 
         <div className={cn(
-          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t",
-          isGlass ? "border-white/10" : "border-white/10"
+          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-white/10"
         )}>
           {features.map((feature, idx) => (
             <FeatureCard

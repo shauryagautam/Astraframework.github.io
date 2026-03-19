@@ -1,4 +1,3 @@
-FILE: /docs/folder-structure
 
 # Folder Structure
 

@@ -32,10 +32,10 @@ export const FeatureCard = ({
       transition={{ delay }}
       viewport={{ once: true }}
       className={cn(
-        "p-12 border-b border-r group cursor-default transition-colors",
+        "p-8 md:p-12 border-b border-white/10 md:border-r group cursor-default transition-colors",
         isGlass
-          ? "border-white/10 hover:bg-white/5 backdrop-blur-sm"
-          : "border-white/10 hover:bg-white/5",
+          ? "hover:bg-white/5 backdrop-blur-sm"
+          : "hover:bg-white/5",
         className
       )}
     >

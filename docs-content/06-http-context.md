@@ -1,4 +1,3 @@
-FILE: /docs/http-context
 
 # HTTP Context
 

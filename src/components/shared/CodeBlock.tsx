@@ -1,69 +1,86 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, Check } from 'lucide-react';
-import { useState } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { cn } from '../../lib/utils';
 import { useTheme } from '../../context/ThemeContext';
+import { CopyButton } from './CopyButton';
 
 interface CodeBlockProps {
   code: string;
-  title?: string;
-  copyable?: boolean;
+  language?: string;
+  filename?: string;
   className?: string;
+  showLineNumbers?: boolean;
 }
 
 export const CodeBlock = ({ 
-  code, 
-  title, 
-  copyable = true,
-  className 
+  code: rawCode, 
+  language = 'text', 
+  filename,
+  className,
+  showLineNumbers = false
 }: CodeBlockProps) => {
-  const [copied, setCopied] = useState(false);
   const { theme } = useTheme();
   const isGlass = theme === 'liquid-glass';
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  
+  const code = rawCode.trim();
 
   return (
     <div className={cn(
-      "relative rounded-xl border overflow-hidden shadow-2xl group",
-      isGlass ? "glass-panel-strong border-white/10" : "bg-[#0a0a0a] border-[var(--t-border-strong)]",
+      "group relative rounded-xl border overflow-hidden my-8 shadow-2xl transition-all duration-300",
+      isGlass ? "glass-panel-strong border-white/10" : "bg-[#050505] border-[var(--t-border-strong)]",
       className
     )}>
-      {title && (
-        <div className="flex items-center justify-between px-6 py-3 bg-white/5 border-b border-white/10">
-          <div className="flex items-center gap-4 text-xs font-mono text-white/40">
-            <span>{title}</span>
+      {/* Header */}
+      <div className="flex items-center justify-between px-5 py-2.5 border-b border-white/5 bg-white/[0.03] backdrop-blur-3xl">
+        <div className="flex items-center gap-4">
+          <div className="flex gap-1.5 opacity-20">
+            <div className="w-2 h-2 rounded-full bg-white" />
+            <div className="w-2 h-2 rounded-full bg-white" />
+            <div className="w-2 h-2 rounded-full bg-white" />
           </div>
-          {copyable && (
-            <button
-              onClick={handleCopy}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
-            >
-              {copied ? (
-                <><Check size={12} /> Copied</>
-              ) : (
-                <><Copy size={12} /> Copy</>
-              )}
-            </button>
+          {filename && (
+            <span className="text-[10px] font-mono tracking-wider text-white/40 group-hover:text-white/70 transition-colors">
+              {filename}
+            </span>
           )}
         </div>
-      )}
-      
-      <div className="p-8 font-mono text-sm overflow-x-auto">
-        <AnimatePresence mode="wait">
-          <motion.pre
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="text-white/80"
+        
+        <div className="flex items-center gap-3">
+           <span className="text-[10px] font-mono tracking-[0.2em] font-black uppercase text-white/20 group-hover:text-white/50 transition-all duration-500">
+              {language}
+           </span>
+           <div className="w-px h-3 bg-white/10 mx-1" />
+           <CopyButton
+             text={code}
+             className="border-none bg-transparent hover:bg-white/5 p-1.5 h-auto text-white/30 hover:text-white/90"
+             iconSize={14}
+           />
+        </div>
+      </div>
+
+      <div className="relative">
+        {/* Code Content */}
+        <div className="p-6 overflow-x-auto font-mono text-[13px] sm:text-[14px] leading-relaxed custom-scrollbar">
+          <SyntaxHighlighter
+            language={language}
+            style={oneDark}
+            showLineNumbers={showLineNumbers}
+            lineNumberStyle={{ minWidth: '2.5em', paddingRight: '1.5em', color: 'rgba(255,255,255,0.15)', textAlign: 'right', userSelect: 'none' }}
+            customStyle={{
+              background: 'transparent',
+              padding: 0,
+              margin: 0,
+            }}
+            codeTagProps={{
+              style: {
+                fontFamily: 'var(--font-mono, ui-mono, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace)',
+                background: 'transparent',
+              }
+            }}
           >
-            <code>{code}</code>
-          </motion.pre>
-        </AnimatePresence>
+            {code}
+          </SyntaxHighlighter>
+        </div>
       </div>
     </div>
   );

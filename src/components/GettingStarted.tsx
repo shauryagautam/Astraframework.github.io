@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { Download, PlusCircle, Play, ArrowRight, Copy, Check } from 'lucide-react';
+import { Download, PlusCircle, Play, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { cn } from '../lib/utils';
-import { useState } from 'react';
+import { CopyButton } from './shared/CopyButton';
 
 const steps = [
   {
@@ -28,26 +28,6 @@ const steps = [
   }
 ];
 
-const CopyButton = ({ text }: { text: string }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <button
-      onClick={handleCopy}
-      className="p-1.5 rounded hover:bg-[var(--t-surface-hover)] transition-colors"
-      title="Copy to clipboard"
-    >
-      {copied ? <Check size={14} /> : <Copy size={14} />}
-    </button>
-  );
-};
-
 export const GettingStarted = () => {
   const { theme } = useTheme();
   const isGlass = theme === 'liquid-glass';
@@ -57,7 +37,7 @@ export const GettingStarted = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col mb-16">
           <span className="text-[10px] font-bold tracking-widest uppercase text-[var(--t-text-muted)] mb-2">Workflow</span>
-          <h2 className="text-5xl md:text-7xl mb-6">QUICK START.</h2>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl mb-6">QUICK START.</h2>
           <p className="text-lg max-w-2xl text-[var(--t-text-secondary)]">
             Get an Astra application running in minutes with the CLI tool that handles project setup and development workflow.
           </p>
@@ -96,7 +76,7 @@ export const GettingStarted = () => {
                     <span className="text-[var(--t-text-muted)] mr-2">$</span>
                     {step.cmd}
                   </div>
-                  <CopyButton text={step.cmd} />
+                  <CopyButton text={step.cmd} iconSize={12} className="w-8 h-8 p-0 border-none bg-transparent hover:bg-white/5" />
                 </div>
               </div>
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { CodeBlock } from '../../components/docs/CodeBlock';
+import { CodeBlock } from '../../components/shared/CodeBlock';
 
 export const RoutingContent = () => (
   <>

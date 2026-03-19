@@ -5,6 +5,7 @@ import { GettingStarted } from './components/GettingStarted'
 import { CodeExample } from './components/CodeExample'
 import { useTheme } from './context/ThemeContext'
 import { DocsPage } from './pages/DocsPage'
+import { DocsLanding } from './pages/DocsLanding'
 
 import { MarketingLayout } from './layouts/MarketingLayout'
 import { ScrollToHashElement } from './components/ScrollToHashElement'
@@ -37,7 +38,7 @@ function HomePage() {
 
       <section className="px-6 py-40 flex flex-col items-center justify-center text-center bg-[var(--t-bg)] relative overflow-hidden">
         <div className="grid-background absolute inset-0 opacity-10" />
-        <h2 className="text-[15vw] leading-[0.8] mb-12 relative z-10">START<br />BUILDING.</h2>
+        <h2 className="text-[60px] xs:text-[80px] sm:text-[15vw] lg:text-[12vw] leading-[0.8] mb-12 relative z-10">START<br />BUILDING.</h2>
         <a 
           href="https://github.com/shauryagautam/Astra#readme" 
           target="_blank" 
@@ -66,7 +67,7 @@ function App() {
       )}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/docs" element={<DocsPage />} />
+        <Route path="/docs" element={<DocsLanding />} />
         <Route path="/docs/:categoryId/:sectionId" element={<DocsPage />} />
       </Routes>
     </>
