@@ -111,26 +111,26 @@ r.Group("/admin", func(r *http.Router) {
 })`} 
     />
 
-    <div className="mt-12 py-8 border-t border-[var(--t-border)]">
+    <div className="mt-12 py-8 border-t border-(--t-border)">
       <h2 className="mt-0">Next Steps</h2>
       <ul className="list-none pl-0 space-y-2">
         <li>
-          <Link to="/docs/core-concepts/http-context" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/core-concepts/http-context" className="text-(--t-accent) no-underline hover:underline font-bold">
             HTTP Context &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Learn more about request/response handling.</span>
+          <span className="text-(--t-text-muted) ml-2">— Learn more about request/response handling.</span>
         </li>
         <li>
-          <Link to="/docs/core-concepts/middleware" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/core-concepts/middleware" className="text-(--t-accent) no-underline hover:underline font-bold">
             Middleware &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Explore built-in and custom middleware.</span>
+          <span className="text-(--t-text-muted) ml-2">— Explore built-in and custom middleware.</span>
         </li>
         <li>
-          <Link to="/docs/introduction/folder-structure" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/introduction/folder-structure" className="text-(--t-accent) no-underline hover:underline font-bold">
             Controllers &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— See how to structure your handler logic.</span>
+          <span className="text-(--t-text-muted) ml-2">— See how to structure your handler logic.</span>
         </li>
       </ul>
     </div>

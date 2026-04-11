@@ -78,9 +78,9 @@ export const TableOfContents = () => {
 
   return (
     <aside className="hidden xl:block w-60 shrink-0 p-6 sticky top-24 h-[calc(100vh-80px)] overflow-y-auto z-20">
-      <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--t-text-muted)] mb-4 px-4">On this page</h5>
+      <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-(--t-text-muted) mb-4 px-4">On this page</h5>
       
-      <nav className="space-y-0.5 border-l border-[var(--t-border)]">
+      <nav className="space-y-0.5 border-l border-(--t-border)">
          {headings.map((heading) => (
            <a
              key={heading.id}
@@ -92,8 +92,8 @@ export const TableOfContents = () => {
              className={cn(
                "group flex items-center text-[12px] transition-all py-1.5 px-4 border-l-2 -ml-[1px]",
                activeId === heading.id 
-                 ? "text-[var(--t-accent)] border-[var(--t-accent)] font-bold bg-[var(--t-accent)]/5" 
-                 : "text-[var(--t-text-muted)] border-transparent hover:text-[var(--t-text)] hover:border-[var(--t-border-strong)]"
+                 ? "text-(--t-accent) border-(--t-accent) font-bold bg-(--t-accent)/5" 
+                 : "text-(--t-text-muted) border-transparent hover:text-(--t-text) hover:border-(--t-border-strong)"
              )}
              style={{ paddingLeft: heading.level === 3 ? '1.5rem' : '1rem' }}
            >

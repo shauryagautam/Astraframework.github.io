@@ -86,26 +86,26 @@ routes/
   web.go`} 
     />
 
-    <div className="mt-12 py-8 border-t border-[var(--t-border)]">
+    <div className="mt-12 py-8 border-t border-(--t-border)">
       <h2 className="mt-0">Next Steps</h2>
       <ul className="list-none pl-0 space-y-2">
         <li>
-          <Link to="/docs/core-concepts/routing" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/core-concepts/routing" className="text-(--t-accent) no-underline hover:underline font-bold">
             Routing &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Start mapping requests to your code.</span>
+          <span className="text-(--t-text-muted) ml-2">— Start mapping requests to your code.</span>
         </li>
         <li>
-          <Link to="/docs/introduction/installation" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/introduction/installation" className="text-(--t-accent) no-underline hover:underline font-bold">
             Service Providers &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Learn how to extend Astra with your own services.</span>
+          <span className="text-(--t-text-muted) ml-2">— Learn how to extend Astra with your own services.</span>
         </li>
         <li>
-          <Link to="/docs/database/orm" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/database/orm" className="text-(--t-accent) no-underline hover:underline font-bold">
             ORM &amp; Models &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Define your data structures.</span>
+          <span className="text-(--t-text-muted) ml-2">— Define your data structures.</span>
         </li>
       </ul>
     </div>

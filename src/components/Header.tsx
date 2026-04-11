@@ -34,7 +34,7 @@ export const Header = () => {
       <motion.header 
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="fixed top-0 left-0 w-full z-50 px-4 md:px-6 py-4 md:py-5 flex justify-between items-center border-b border-[var(--t-border)] bg-[var(--t-header-bg)] backdrop-blur-md transition-colors duration-400"
+        className="fixed top-0 left-0 w-full z-50 px-4 md:px-6 py-4 md:py-5 flex justify-between items-center border-b border-(--t-border) bg-(--t-header-bg) backdrop-blur-md transition-colors duration-400"
       >
         <Link to="/" className="z-50">
           <motion.div 
@@ -56,7 +56,7 @@ export const Header = () => {
             <Link 
               key={link.href} 
               to={link.href} 
-              className="hover:text-[var(--t-accent)] transition-colors uppercase tracking-tight"
+              className="hover:text-(--t-accent) transition-colors uppercase tracking-tight"
             >
               {link.label}
             </Link>
@@ -70,7 +70,7 @@ export const Header = () => {
             href="https://github.com/shauryagautam/Astra" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="hidden sm:flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-tighter px-4 py-2 rounded-full border-2 border-[var(--t-text)] hover:bg-[var(--t-text)] hover:text-[var(--t-bg)] transition-all"
+            className="hidden sm:flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-tighter px-4 py-2 rounded-full border-2 border-(--t-text) hover:bg-(--t-text) hover:text-(--t-bg) transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -80,7 +80,7 @@ export const Header = () => {
           {/* Mobile Menu Toggle */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-[var(--t-text)] hover:bg-[var(--t-border)] rounded-lg transition-colors"
+            className="md:hidden p-2 text-(--t-text) hover:bg-(--t-border) rounded-lg transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
@@ -96,7 +96,7 @@ export const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 md:hidden bg-[var(--t-bg)] pt-24 px-6 overflow-y-auto"
+            className="fixed inset-0 z-40 md:hidden bg-(--t-bg) pt-24 px-6 overflow-y-auto"
           >
             <div className="liquid-glass-bg opacity-30" aria-hidden="true">
               <div className="liquid-glass-orb-1 opacity-20" />
@@ -112,7 +112,7 @@ export const Header = () => {
                 >
                   <Link 
                     to={link.href} 
-                    className="text-4xl font-extrabold uppercase tracking-tighter hover:text-[var(--t-accent)] transition-colors"
+                    className="text-4xl font-extrabold uppercase tracking-tighter hover:text-(--t-accent) transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.label}
@@ -124,7 +124,7 @@ export const Header = () => {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.25 }}
-                className="pt-10 border-t border-[var(--t-border)] mt-4"
+                className="pt-10 border-t border-(--t-border) mt-4"
               >
                 <a 
                   href="https://github.com/shauryagautam/Astra"

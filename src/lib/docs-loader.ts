@@ -53,23 +53,15 @@ const modules = import.meta.glob('/docs-content/**/*.md', { query: '?raw', eager
 
 // Manual mapping for files without frontmatter or folders to place them in correct categories
 const fileToCategoryMap: Record<string, string> = {
-  'docs': 'introduction',
-  'quickstart': 'introduction',
-  'installation': 'introduction',
-  'folder-structure': 'introduction',
-  'routing': 'core-concepts',
-  'http-context': 'core-concepts',
-  'middleware': 'core-concepts',
-  'validation': 'core-concepts',
-  'auth': 'auth',
-  'orm': 'database',
-  'migrations': 'database',
-  'storage': 'database',
-  'queues': 'advanced',
-  'events': 'advanced',
-  'testing': 'advanced',
-  'deployment': 'development',
-  'observability': 'development'
+  'index': 'introduction',
+  'foundation': 'introduction',
+  'architecture': 'core-concepts',
+  'security': 'auth',
+  'persistence': 'database',
+  'frontend': 'full-stack',
+  'observability': 'production',
+  'testing': 'production',
+  'deployment': 'production'
 };
 
 export const getDocsData = (): DocCategory[] => {
@@ -118,11 +110,11 @@ export const getDocsData = (): DocCategory[] => {
   // Predefined order for categories
   const categoryOrder = [
     { id: 'introduction', title: 'Introduction' },
-    { id: 'core-concepts', title: 'Core Concepts' },
-    { id: 'database', title: 'Database & Storage' },
-    { id: 'auth', title: 'Authentication' },
-    { id: 'advanced', title: 'Advanced Guides' },
-    { id: 'development', title: 'Development & Ops' }
+    { id: 'core-concepts', title: 'Core Architecture' },
+    { id: 'auth', title: 'Identity & Security' },
+    { id: 'database', title: 'Persistence' },
+    { id: 'full-stack', title: 'Frontend & Real-time' },
+    { id: 'production', title: 'Production & Ops' }
   ];
 
   // Also include any categories discovered but not in the predefined list

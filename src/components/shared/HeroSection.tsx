@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Terminal, Copy, Check } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { BalancedText } from './BalancedText';
 
 interface HeroSectionProps {
   quickstart?: string;
@@ -15,8 +16,8 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ 
   quickstart = "go install github.com/astraframework/astra/cli@latest",
-  title = "STRUCTURED<br />FRAMEWORK.",
-  subtitle = "Go Framework",
+  title = "High productivity through compile-time guarantees.",
+  subtitle = "A production-grade full-stack framework of Go.",
   features = [
     { label: "001 / DESIGN", description: "Astra is a structured Go framework providing clear patterns for building maintainable web applications." },
     { label: "002 / ECOSYSTEM", description: "Built-in routing, middleware, and database tools provide a complete foundation for web development." }
@@ -43,7 +44,9 @@ export const HeroSection = ({
             className="flex items-center gap-4 mb-4"
           >
             <div className="blueprint-line-h w-24" />
-            <span className="text-sm font-bold tracking-[0.2em] uppercase">{subtitle}</span>
+            <BalancedText className="text-sm font-bold tracking-[0.2em] uppercase shrink-0">
+              {subtitle}
+            </BalancedText>
           </motion.div>
 
           <motion.h1 
@@ -51,8 +54,9 @@ export const HeroSection = ({
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-[42px] xs:text-[52px] md:text-[8vw] lg:text-[7vw] leading-[0.85] font-extrabold tracking-[-0.05em] mb-8 lg:mb-12"
-            dangerouslySetInnerHTML={{ __html: title }}
-          />
+          >
+            <BalancedText children={title} />
+          </motion.h1>
         </div>
 
         <motion.div 
@@ -91,7 +95,7 @@ export const HeroSection = ({
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mt-auto border-t border-[var(--t-border-strong)] pt-8 md:pt-12 pb-8 md:pb-12 text-center sm:text-left">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mt-auto border-t border-(--t-border-strong) pt-8 md:pt-12 pb-8 md:pb-12 text-center sm:text-left">
         {features.map((feature, idx) => (
           <motion.div 
             key={idx}
@@ -101,9 +105,9 @@ export const HeroSection = ({
             className="flex flex-col items-center sm:items-start"
           >
             <span className="text-[10px] md:text-xs font-bold mb-2 uppercase tracking-wider">{feature.label}</span>
-            <p className="text-xs md:text-sm leading-relaxed max-w-[320px] text-[var(--t-text-secondary)]">
+            <BalancedText className="text-xs md:text-sm leading-relaxed max-w-[320px] text-(--t-text-secondary)">
               {feature.description}
-            </p>
+            </BalancedText>
           </motion.div>
         ))}
 
@@ -115,7 +119,7 @@ export const HeroSection = ({
         >
           <Link 
             to="/docs" 
-            className="w-full sm:w-auto text-center bg-[var(--t-accent)] text-[var(--t-accent-text)] px-8 py-4 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-[var(--t-accent-hover)] hover:text-[var(--t-accent-hover-text)] hover:shadow-[0_0_20px_rgba(var(--t-accent-rgb),0.3)] transition-all"
+            className="w-full sm:w-auto text-center bg-(--t-accent) text-(--t-accent-text) px-8 py-4 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-(--t-accent-hover) hover:text-(--t-accent-hover-text) hover:shadow-[0_0_20px_rgba(var(--t-accent-rgb),0.3)] transition-all"
           >
             Get Started
           </Link>
@@ -123,7 +127,7 @@ export const HeroSection = ({
       </div>
 
       <div className="absolute right-0 bottom-1/4 translate-x-1/3 -rotate-90 hidden xl:block">
-        <span className="text-[10vw] font-display font-extrabold text-[var(--t-watermark)] select-none uppercase">Fullstack</span>
+        <span className="text-[10vw] font-display font-extrabold text-(--t-watermark) select-none uppercase">Fullstack</span>
       </div>
     </section>
   );

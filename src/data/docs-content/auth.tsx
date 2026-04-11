@@ -113,9 +113,9 @@ hashed, _ := auth.HashPassword("secret")
 match := auth.CheckPasswordHash("secret", hashed)`} 
     />
 
-    <div className="p-6 bg-[var(--t-accent)]/5 rounded-2xl border border-[var(--t-accent)]/10 my-8">
-      <p className="m-0 text-sm text-[var(--t-text-secondary)]">
-        <strong>Note:</strong> TOTP (Time-based One-Time Password) support is currently in the experimental phase. Check the <a href="https://github.com/astraframework/astra/releases" target="_blank" className="text-[var(--t-accent)] hover:underline">latest release notes</a> for integration updates.
+    <div className="p-6 bg-(--t-accent)/5 rounded-2xl border border-(--t-accent)/10 my-8">
+      <p className="m-0 text-sm text-(--t-text-secondary)">
+        <strong>Note:</strong> TOTP (Time-based One-Time Password) support is currently in the experimental phase. Check the <a href="https://github.com/astraframework/astra/releases" target="_blank" className="text-(--t-accent) hover:underline">latest release notes</a> for integration updates.
       </p>
     </div>
 
@@ -126,26 +126,26 @@ match := auth.CheckPasswordHash("secret", hashed)`}
       <li><strong>Use Revocation</strong>: Astra’s Redis integration allows you to revoke refresh tokens immediately if a user's account is compromised.</li>
     </ol>
 
-    <div className="mt-12 py-8 border-t border-[var(--t-border)]">
+    <div className="mt-12 py-8 border-t border-(--t-border)">
       <h2 className="mt-0">Next Steps</h2>
       <ul className="list-none pl-0 space-y-2">
         <li>
-          <Link to="/docs/database/orm" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/database/orm" className="text-(--t-accent) no-underline hover:underline font-bold">
             ORM &amp; Models &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Learn how to link Auth users to your database.</span>
+          <span className="text-(--t-text-muted) ml-2">— Learn how to link Auth users to your database.</span>
         </li>
         <li>
-          <Link to="/docs/core-concepts/http-context" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/core-concepts/http-context" className="text-(--t-accent) no-underline hover:underline font-bold">
             HTTP Context &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Explore more Auth-related helpers on the context.</span>
+          <span className="text-(--t-text-muted) ml-2">— Explore more Auth-related helpers on the context.</span>
         </li>
         <li>
-          <Link to="/docs/core-concepts/middleware" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/core-concepts/middleware" className="text-(--t-accent) no-underline hover:underline font-bold">
             Security Headers &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Complement your auth with robust security headers.</span>
+          <span className="text-(--t-text-muted) ml-2">— Complement your auth with robust security headers.</span>
         </li>
       </ul>
     </div>

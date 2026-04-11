@@ -15,7 +15,7 @@ function HomePage() {
     <MarketingLayout>
       <Hero />
       
-      <div className="py-12 border-y border-[var(--t-border)] bg-[var(--t-bg-secondary)] overflow-hidden whitespace-nowrap">
+      <div className="py-12 border-y border-(--t-border) bg-(--t-bg-secondary) overflow-hidden whitespace-nowrap">
         <div className="inline-block animate-marquee">
           <span className="text-4xl font-display font-extrabold mx-8 opacity-20 uppercase tracking-tighter italic">High Performance</span>
           <span className="text-4xl font-display font-extrabold mx-8 opacity-20 uppercase tracking-tighter italic">Go Framework</span>
@@ -36,14 +36,14 @@ function HomePage() {
       <FeatureGrid />
       <CodeExample />
 
-      <section className="px-6 py-40 flex flex-col items-center justify-center text-center bg-[var(--t-bg)] relative overflow-hidden">
+      <section className="px-6 py-40 flex flex-col items-center justify-center text-center bg-(--t-bg) relative overflow-hidden">
         <div className="grid-background absolute inset-0 opacity-10" />
         <h2 className="text-[60px] xs:text-[80px] sm:text-[15vw] lg:text-[12vw] leading-[0.8] mb-12 relative z-10">START<br />BUILDING.</h2>
         <a 
           href="https://github.com/shauryagautam/Astra#readme" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="bg-[var(--t-accent)] text-[var(--t-accent-text)] text-xl px-12 py-6 font-bold uppercase tracking-[0.2em] hover:scale-105 transition-transform relative z-10 inline-block"
+          className="bg-(--t-accent) text-(--t-accent-text) text-xl px-12 py-6 font-bold uppercase tracking-[0.2em] hover:scale-105 transition-transform relative z-10 inline-block"
         >
           Get Started Now
         </a>

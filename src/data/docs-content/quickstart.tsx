@@ -97,7 +97,7 @@ func RegisterRoutes(r *http.Router) {
       code="curl http://localhost:8080/api/greet?name=Astra" 
     />
 
-    <div className="mt-12 p-8 bg-[var(--t-accent)]/5 rounded-2xl border border-[var(--t-accent)]/10">
+    <div className="mt-12 p-8 bg-(--t-accent)/5 rounded-2xl border border-(--t-accent)/10">
       <h2 className="mt-0">What just happened?</h2>
       <ul>
         <li>You installed the <strong>Astra CLI</strong>.</li>
@@ -107,32 +107,32 @@ func RegisterRoutes(r *http.Router) {
       </ul>
     </div>
 
-    <div className="mt-12 py-8 border-t border-[var(--t-border)]">
+    <div className="mt-12 py-8 border-t border-(--t-border)">
       <h2 className="mt-0">Next Steps</h2>
       <ul className="list-none pl-0 space-y-2">
         <li>
-          <Link to="/docs/introduction/installation" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/introduction/installation" className="text-(--t-accent) no-underline hover:underline font-bold">
             Installation Guide &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Learn more about requirements and configuration.</span>
+          <span className="text-(--t-text-muted) ml-2">— Learn more about requirements and configuration.</span>
         </li>
         <li>
-          <Link to="/docs/introduction/folder-structure" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/introduction/folder-structure" className="text-(--t-accent) no-underline hover:underline font-bold">
             Folder Structure &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Explore the anatomy of an Astra app.</span>
+          <span className="text-(--t-text-muted) ml-2">— Explore the anatomy of an Astra app.</span>
         </li>
         <li>
-          <Link to="/docs/core-concepts/routing" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/core-concepts/routing" className="text-(--t-accent) no-underline hover:underline font-bold">
             Routing &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Master groups, params, and named routes.</span>
+          <span className="text-(--t-text-muted) ml-2">— Master groups, params, and named routes.</span>
         </li>
         <li>
-          <Link to="/docs/database/orm" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/database/orm" className="text-(--t-accent) no-underline hover:underline font-bold">
             Database &amp; ORM &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Seamlessly connect to your data.</span>
+          <span className="text-(--t-text-muted) ml-2">— Seamlessly connect to your data.</span>
         </li>
       </ul>
     </div>

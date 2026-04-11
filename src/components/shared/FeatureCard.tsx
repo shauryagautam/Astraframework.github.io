@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useTheme } from '../../context/ThemeContext';
+import { BalancedText } from './BalancedText';
 
 interface FeatureCardProps {
   id: string;
@@ -44,9 +45,9 @@ export const FeatureCard = ({
         <Icon className="text-white group-hover:scale-110 transition-transform" size={24} />
       </div>
       <h3 className="text-2xl mb-4 group-hover:translate-x-2 transition-transform">{title}</h3>
-      <p className="text-sm text-[#8A8A8A] leading-relaxed group-hover:text-white transition-colors mb-6">
+      <BalancedText className="text-sm text-[#8A8A8A] leading-relaxed group-hover:text-white transition-colors mb-6">
         {description}
-      </p>
+      </BalancedText>
       <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
         <div className="w-1 h-1 rounded-full bg-green-500" />
         <span className="text-[10px] uppercase font-bold text-white/40 tracking-widest">{stack}</span>

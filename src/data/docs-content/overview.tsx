@@ -48,27 +48,27 @@ export const OverviewContent = () => (
       <li><strong>Observability</strong>: First-class integration with OpenTelemetry, structured logging, and automated request tracing.</li>
     </ul>
 
-    <div className="mt-12 py-8 border-t border-[var(--t-border)]">
+    <div className="mt-12 py-8 border-t border-(--t-border)">
       <h2 className="mt-0">Next Steps</h2>
       <p>Ready to build your first application?</p>
       <ul className="list-none pl-0 space-y-2">
         <li>
-          <Link to="/docs/introduction/quickstart" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/introduction/quickstart" className="text-(--t-accent) no-underline hover:underline font-bold">
             Quickstart &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Get up and running in under 5 minutes.</span>
+          <span className="text-(--t-text-muted) ml-2">— Get up and running in under 5 minutes.</span>
         </li>
         <li>
-          <Link to="/docs/introduction/installation" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/introduction/installation" className="text-(--t-accent) no-underline hover:underline font-bold">
             Installation &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Deep dive into requirements and CLI setup.</span>
+          <span className="text-(--t-text-muted) ml-2">— Deep dive into requirements and CLI setup.</span>
         </li>
         <li>
-          <Link to="/docs/introduction/folder-structure" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/introduction/folder-structure" className="text-(--t-accent) no-underline hover:underline font-bold">
             Architecture &amp; Folder Structure &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Understand how Astra organizes your code.</span>
+          <span className="text-(--t-text-muted) ml-2">— Understand how Astra organizes your code.</span>
         </li>
       </ul>
     </div>

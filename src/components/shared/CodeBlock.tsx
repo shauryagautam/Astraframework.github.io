@@ -27,7 +27,7 @@ export const CodeBlock = ({
   return (
     <div className={cn(
       "group relative rounded-xl border overflow-hidden my-8 shadow-2xl transition-all duration-300",
-      isGlass ? "glass-panel-strong border-white/10" : "bg-[#050505] border-[var(--t-border-strong)]",
+      isGlass ? "glass-panel-strong border-white/10" : "bg-[#050505] border-(--t-border-strong)",
       className
     )}>
       {/* Header */}

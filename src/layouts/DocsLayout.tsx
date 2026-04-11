@@ -4,13 +4,14 @@ import { Grain } from '../components/Grain';
 import { Header } from '../components/Header';
 import { DocsSidebar } from '../components/DocsSidebar';
 import { useTheme } from '../context/ThemeContext';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
+import { DocsTopicSearch } from '../components/DocsTopicSearch';
 import { TableOfContents } from '../components/TableOfContents';
 
 export const DocsLayout = ({ children }: LayoutProps) => {
@@ -19,7 +20,7 @@ export const DocsLayout = ({ children }: LayoutProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[var(--t-bg)] text-[var(--t-text)] transition-colors duration-400 flex flex-col">
+    <div className="min-h-screen bg-(--t-bg) text-(--t-text) transition-colors duration-400 flex flex-col">
       {isGlass && (
         <div className="liquid-glass-bg" aria-hidden="true">
           <div className="liquid-glass-orb-1 opacity-20" />
@@ -40,7 +41,7 @@ export const DocsLayout = ({ children }: LayoutProps) => {
             "absolute inset-0 bg-black/60 backdrop-blur-sm md:hidden transition-opacity duration-500",
             isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           )} onClick={() => setIsSidebarOpen(false)} />
-          <div className="relative w-64 h-full bg-[var(--t-bg)] border-r border-[var(--t-border)] shadow-2xl md:shadow-none md:border-none">
+          <div className="relative w-64 h-full bg-(--t-bg) border-r border-(--t-border) shadow-2xl md:shadow-none md:border-none">
              <DocsSidebar onItemClick={() => setIsSidebarOpen(false)} />
           </div>
         </aside>
@@ -49,6 +50,7 @@ export const DocsLayout = ({ children }: LayoutProps) => {
         <main className="flex-1 min-w-0 flex flex-col lg:flex-row relative z-0 items-start">
           <div className="flex-1 min-w-0 py-8 md:py-12">
             {children}
+            <DocsTopicSearch />
           </div>
           
           <TableOfContents />
@@ -56,7 +58,7 @@ export const DocsLayout = ({ children }: LayoutProps) => {
           {/* Mobile Sidebar Toggle */}
           <button 
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="md:hidden fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[var(--t-accent)] text-[var(--t-accent-text)] shadow-xl hover:scale-110 active:scale-95 transition-all"
+            className="md:hidden fixed bottom-6 right-6 z-50 p-4 rounded-full bg-(--t-accent) text-(--t-accent-text) shadow-xl hover:scale-110 active:scale-95 transition-all"
             aria-label="Toggle Sidebar"
           >
             {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
@@ -64,7 +66,7 @@ export const DocsLayout = ({ children }: LayoutProps) => {
         </main>
       </div>
 
-      <footer className="px-8 py-12 border-t border-[var(--t-border)] bg-[var(--t-bg)] relative z-10 transition-colors duration-400">
+      <footer className="px-8 py-12 border-t border-(--t-border) bg-(--t-bg) relative z-10 transition-colors duration-400">
         <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
           <div className="space-y-4">
              <div className="flex items-center gap-3">
@@ -83,18 +85,24 @@ export const DocsLayout = ({ children }: LayoutProps) => {
             <div className="space-y-4">
                <h5 className="text-[10px] font-black uppercase tracking-widest opacity-20">Project</h5>
                <nav className="flex flex-col gap-2.5 text-[11px] font-bold uppercase tracking-tighter">
-                  <a href="https://github.com/shauryagautam/Astra" className="hover:text-[var(--t-accent)] transition-colors">GitHub</a>
-                  <a href="/docs" className="hover:text-[var(--t-accent)] transition-colors">Documentation</a>
-                  <a href="/#showcase" className="hover:text-[var(--t-accent)] transition-colors">Showcase</a>
+                  <a href="https://github.com/shauryagautam/Astra" className="hover:text-(--t-accent) transition-colors">GitHub</a>
+                  <a href="/docs" className="hover:text-(--t-accent) transition-colors">Documentation</a>
+                  <a href="/#showcase" className="hover:text-(--t-accent) transition-colors">Showcase</a>
                </nav>
             </div>
             
             <div className="space-y-4">
                <h5 className="text-[10px] font-black uppercase tracking-widest opacity-20">Community</h5>
-               <nav className="flex flex-col gap-2.5 text-[11px] font-bold uppercase tracking-tighter">
-                  <a href="https://discord.gg/astra" className="hover:text-[var(--t-accent)] transition-colors">Discord</a>
-                  <a href="https://x.com/Shaurya1309" className="hover:text-[var(--t-accent)] transition-colors uppercase">X (Twitter)</a>
-                  <a href="https://www.instagram.com/mr.shauryagautam" className="hover:text-[var(--t-accent)] transition-colors uppercase">Instagram</a>
+               <nav className="flex flex-col gap-3 text-[11px] font-bold uppercase tracking-tighter">
+                  <a href="https://x.com/Shaurya1309" target="_blank" rel="noopener noreferrer" className="hover:text-(--t-accent) transition-colors flex items-center gap-2">
+                    <Twitter size={12} /> X
+                  </a>
+                  <a href="https://www.instagram.com/mr.shauryagautam" target="_blank" rel="noopener noreferrer" className="hover:text-(--t-accent) transition-colors flex items-center gap-2">
+                    <Instagram size={12} /> Instagram
+                  </a>
+                  <a href="https://www.linkedin.com/in/shaurya13" target="_blank" rel="noopener noreferrer" className="hover:text-(--t-accent) transition-colors flex items-center gap-2">
+                    <Linkedin size={12} /> LinkedIn
+                  </a>
                </nav>
             </div>
           </div>

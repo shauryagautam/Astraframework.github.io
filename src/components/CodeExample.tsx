@@ -11,20 +11,18 @@ const examples = [
     label: 'Routing',
     icon: Code,
     title: 'Defining a Route',
-    code: `package main
-
-import "github.com/astraframework/astra"
-
-func main() {
-    app := astra.New()
-
-    app.Get("/", func(c *astra.Context) error {
-        return c.JSON(200, astra.M{
-            "message": "Welcome to Astra!",
-        })
+    code: `Go
+func TestUserRegistration(t *testing.T) {
+    app := test_util.NewTestApp(t, func(app *engine.App, r *http.Router) {
+        r.Post("/register", UserHandler{}.Store)
     })
 
-    app.Run(":8080")
+    app.POST("/register", map[string]string{
+        "email":    "naut@astra.dev",
+        "password": "secret-password",
+    }).
+    ExpectStatus(201).
+    ExpectJSON("message", "User created successfully")
 }`
   },
   {

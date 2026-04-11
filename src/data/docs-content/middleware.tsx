@@ -101,26 +101,26 @@ r.Group("/v1", func(r *http.Router) {
       <li>AFTER Hooks</li>
     </ol>
 
-    <div className="mt-12 py-8 border-t border-[var(--t-border)]">
+    <div className="mt-12 py-8 border-t border-(--t-border)">
       <h2 className="mt-0">Next Steps</h2>
       <ul className="list-none pl-0 space-y-2">
         <li>
-          <Link to="/docs/auth/auth" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/auth/auth" className="text-(--t-accent) no-underline hover:underline font-bold">
             Authentication &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Use the built-in auth middleware to secure your app.</span>
+          <span className="text-(--t-text-muted) ml-2">— Use the built-in auth middleware to secure your app.</span>
         </li>
         <li>
-          <Link to="/docs/development/observability" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/development/observability" className="text-(--t-accent) no-underline hover:underline font-bold">
             Observability &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— See how middleware handles request tracing and monitoring.</span>
+          <span className="text-(--t-text-muted) ml-2">— See how middleware handles request tracing and monitoring.</span>
         </li>
         <li>
-          <Link to="/docs/core-concepts/http-context" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/core-concepts/http-context" className="text-(--t-accent) no-underline hover:underline font-bold">
             Error Handling &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Learn how middleware interacts with Astra's error responses.</span>
+          <span className="text-(--t-text-muted) ml-2">— Learn how middleware interacts with Astra's error responses.</span>
         </li>
       </ul>
     </div>

@@ -136,26 +136,26 @@ if c.Can("edit", post) {
 limit := c.PerPage(50)      // ?per_page=n (default 15, max 50)`} 
     />
 
-    <div className="mt-12 py-8 border-t border-[var(--t-border)]">
+    <div className="mt-12 py-8 border-t border-(--t-border)">
       <h2 className="mt-0">Next Steps</h2>
       <ul className="list-none pl-0 space-y-2">
         <li>
-          <Link to="/docs/core-concepts/middleware" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/core-concepts/middleware" className="text-(--t-accent) no-underline hover:underline font-bold">
             Middleware &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Learn how to intercept requests before they reach your handler.</span>
+          <span className="text-(--t-text-muted) ml-2">— Learn how to intercept requests before they reach your handler.</span>
         </li>
         <li>
-          <Link to="/docs/auth/validation" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/auth/validation" className="text-(--t-accent) no-underline hover:underline font-bold">
             Validation Patterns &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Deep dive into complex validation rules.</span>
+          <span className="text-(--t-text-muted) ml-2">— Deep dive into complex validation rules.</span>
         </li>
         <li>
-          <Link to="/docs/auth/auth" className="text-[var(--t-accent)] no-underline hover:underline font-bold">
+          <Link to="/docs/auth/auth" className="text-(--t-accent) no-underline hover:underline font-bold">
             Auth Integration &rarr;
           </Link>
-          <span className="text-[var(--t-text-muted)] ml-2">— Secure your routes with ease.</span>
+          <span className="text-(--t-text-muted) ml-2">— Secure your routes with ease.</span>
         </li>
       </ul>
     </div>
