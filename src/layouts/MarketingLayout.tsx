@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Grain } from '../components/Grain';
 import { Header } from '../components/Header';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 import { Twitter, Instagram, Linkedin, Github } from 'lucide-react';
 
 interface LayoutProps {

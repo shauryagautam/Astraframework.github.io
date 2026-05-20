@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { DOCS_CONFIG } from '../config/docs';
 import { cn } from '../lib/utils';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 import { useEffect, useRef, useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';

@@ -11,18 +11,19 @@ interface BalancedTextProps {
  * BalancedText uses @chenglou/pretext to ensure that text lines are balanced
  * in length, avoiding "orphans" and creating a premium editorial look.
  */
-export const BalancedText: React.FC<BalancedTextProps> = ({ 
+export const BalancedText = ({ 
   children, 
   className = '', 
   as: Component = 'div' 
-}) => {
+}: BalancedTextProps) => {
   const containerRef = useRef<HTMLElement>(null);
   const [balancedWidth, setBalancedWidth] = useState<number | null>(null);
 
   useLayoutEffect(() => {
     const el = containerRef.current;
     if (!el || typeof children !== 'string') {
-      setBalancedWidth(null);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      if (balancedWidth !== null) setBalancedWidth(null);
       return;
     }
 
@@ -42,17 +43,15 @@ export const BalancedText: React.FC<BalancedTextProps> = ({
 
     // If it's just one line, no balancing needed
     if (targetLineCount <= 1) {
-      setBalancedWidth(null);
+      if (balancedWidth !== null) setBalancedWidth(null);
       return;
     }
 
     // 3. Binary search for the smallest width that keeps the same line count
-    // This width will be the most "balanced" distribution.
     let min = 0;
     let max = initialWidth;
     let bestWidth = initialWidth;
 
-    // We do about 10 iterations for a precise enough width (2^10 = 1024)
     for (let i = 0; i < 10; i++) {
         const mid = (min + max) / 2;
         const currentLayout = layout(prepared, mid, lineHeight);
@@ -65,19 +64,24 @@ export const BalancedText: React.FC<BalancedTextProps> = ({
         }
     }
 
-    setBalancedWidth(bestWidth);
-  }, [children]);
+    if (Math.abs((balancedWidth || 0) - bestWidth) > 1) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setBalancedWidth(bestWidth);
+    }
+  }, [children, balancedWidth]);
+
+  const Tag = Component as any;
 
   return (
-    <Component 
-      ref={containerRef as any}
+    <Tag 
+      ref={containerRef}
       className={className} 
       style={{ 
         maxWidth: balancedWidth ? `${balancedWidth + 1}px` : 'none',
-        display: 'block'
+        display: Component === 'span' ? 'inline-block' : 'block'
       }}
     >
       {children}
-    </Component>
+    </Tag>
   );
 };

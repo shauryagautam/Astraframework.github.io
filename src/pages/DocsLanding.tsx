@@ -4,9 +4,10 @@ import { DocsLayout } from '../layouts/DocsLayout';
 import { DOCS_CONFIG } from '../config/docs';
 import { motion } from 'framer-motion';
 import { ArrowRight, Book, Code, Database, Shield, Zap, Terminal } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { BalancedText } from '../components/shared/BalancedText';
 
-const categoryIcons: Record<string, any> = {
+const categoryIcons: Record<string, LucideIcon> = {
   'introduction': Book,
   'core-concepts': Zap,
   'database': Database,
@@ -15,9 +16,15 @@ const categoryIcons: Record<string, any> = {
   'development': Terminal
 };
 
+import { SEO } from '../components/shared/SEO';
+
 export const DocsLanding = () => {
   return (
     <DocsLayout>
+      <SEO 
+        title="Documentation" 
+        description="Comprehensive guides and API references for the Astra framework. Master modern Go development." 
+      />
       <div className="max-w-4xl py-20 px-6 lg:px-20 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

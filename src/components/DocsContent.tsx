@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { ChevronRight, Edit3, ThumbsUp, ThumbsDown, Clock } from 'lucide-react';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { useEffect } from 'react';
-import { BalancedText } from './shared/BalancedText';
+import { SEO } from './shared/SEO';
 
 export const DocsContent = () => {
   const { categoryId, sectionId } = useParams();
@@ -52,8 +52,13 @@ export const DocsContent = () => {
 
   return (
     <>
+      <SEO 
+        title={section.title} 
+        description={section.metadata.description || `Read about ${section.title} in the ${category.title} category.`}
+      />
+      
       <motion.div 
-        className="fixed top-20 left-0 right-0 h-1 bg-(--t-accent) origin-left z-50 pointer-events-none"
+        className="fixed top-[64px] md:top-20 left-0 right-0 h-1 bg-(--t-accent) origin-left z-70 pointer-events-none"
         style={{ scaleX }}
       />
       
@@ -64,19 +69,19 @@ export const DocsContent = () => {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="max-w-4xl py-12 lg:pr-12 w-full mx-auto"
+          className="max-w-4xl py-6 md:py-12 lg:pr-12 w-full mx-auto overflow-hidden wrap-break-word"
         >
         {/* Breadcrumbs & Metadata */}
-        <nav className="flex flex-wrap items-center gap-y-2 gap-x-3 text-[10px] font-black uppercase tracking-[0.2em] text-(--t-accent)/40 mb-8 pb-2 border-b border-(--t-border)/30">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+        <nav className="flex flex-col sm:flex-row sm:items-center gap-y-4 gap-x-3 text-[10px] font-black uppercase tracking-[0.2em] text-(--t-accent)/40 mb-8 pb-4 border-b border-(--t-border)/30">
+          <div className="flex flex-wrap items-center gap-2 overflow-x-hidden pb-1 sm:pb-0">
             <Link to="/docs" className="hover:text-(--t-accent) transition-colors shrink-0">Docs</Link>
             <ChevronRight size={10} className="shrink-0 opacity-30" />
-            <BalancedText as="span" className="shrink-0">{category.title}</BalancedText>
+            <span className="shrink-0">{category.title}</span>
             <ChevronRight size={10} className="shrink-0 opacity-30" />
-            <BalancedText as="span" className="text-(--t-text) shrink-0">{section.title}</BalancedText>
+            <span className="text-(--t-text) shrink-0">{section.title}</span>
           </div>
           
-          <div className="md:ml-auto flex items-center gap-4 text-(--t-text-muted)/50">
+          <div className="sm:ml-auto flex items-center gap-4 text-(--t-text-muted)/50">
              <div className="flex items-center gap-1.5">
                 <Clock size={10} />
                 <span>{readingTime} min read</span>
@@ -118,18 +123,18 @@ export const DocsContent = () => {
         </div>
 
         {/* Helpfulness Survey */}
-        <section className="mt-24 p-6 sm:p-10 rounded-3xl border border-(--t-border) bg-(--t-bg-secondary)/20 backdrop-blur-md relative overflow-hidden group">
+        <section className="mt-16 sm:mt-24 p-6 sm:p-10 rounded-3xl border border-(--t-border) bg-(--t-bg-secondary)/20 backdrop-blur-md relative overflow-hidden group">
            <div className="absolute top-0 right-0 w-64 h-64 bg-(--t-accent)/3 blur-3xl -mr-32 -mt-32 rounded-full group-hover:bg-(--t-accent)/6 transition-all duration-700" />
-           <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-              <div className="text-center md:text-left">
-                 <h4 className="text-xl font-display font-black uppercase tracking-tight mb-2">Was this page helpful?</h4>
-                 <p className="text-(--t-text-muted) text-sm max-w-xs font-medium">Your feedback helps us make Astra's documentation better for everyone.</p>
+           <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10 text-center md:text-left">
+              <div className="flex flex-col gap-2">
+                 <h4 className="text-xl font-display font-black uppercase tracking-tight">Was this page helpful?</h4>
+                 <p className="text-(--t-text-muted) text-sm max-w-xs font-medium mx-auto md:mx-0">Your feedback helps us make Astra's documentation better for everyone.</p>
               </div>
-              <div className="flex gap-3">
-                 <button className="h-12 px-6 rounded-xl border border-(--t-border) hover:border-(--t-accent) hover:bg-(--t-accent)/10 transition-all text-sm font-black uppercase tracking-widest flex items-center gap-3">
+              <div className="flex flex-wrap justify-center gap-3">
+                 <button className="h-12 px-6 rounded-xl border border-(--t-border) hover:border-(--t-accent) hover:bg-(--t-accent)/10 transition-all text-[11px] font-black uppercase tracking-widest flex items-center gap-3 shrink-0">
                     <ThumbsUp size={16} className="text-emerald-500" /> Yes
                  </button>
-                 <button className="h-12 px-6 rounded-xl border border-(--t-border) hover:border-red-500/50 hover:bg-red-500/10 transition-all text-sm font-black uppercase tracking-widest flex items-center gap-3">
+                 <button className="h-12 px-6 rounded-xl border border-(--t-border) hover:border-red-500/50 hover:bg-red-500/10 transition-all text-[11px] font-black uppercase tracking-widest flex items-center gap-3 shrink-0">
                     <ThumbsDown size={16} className="text-rose-500" /> No
                  </button>
               </div>

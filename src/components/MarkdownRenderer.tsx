@@ -3,8 +3,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { cn } from '../lib/utils';
-import { useTheme } from '../context/ThemeContext';
-import { Info, Lightbulb, AlertTriangle, AlertCircle, Check } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme';
+import { Info, Lightbulb, AlertTriangle, AlertCircle, Check, type LucideIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { CodeBlock } from './shared/CodeBlock';
 import { BalancedText } from './shared/BalancedText';
@@ -14,7 +14,7 @@ const Alert = ({ type, children }: { type: string, children: React.ReactNode }) 
   const { theme } = useTheme();
   const isLight = theme === 'light';
 
-  const styles: Record<string, { bg: string, border: string, icon: any, color: string, decoration: string }> = {
+  const styles: Record<string, { bg: string, border: string, icon: LucideIcon, color: string, decoration: string }> = {
     info: { 
       bg: isLight ? "bg-blue-50" : "bg-blue-500/5", 
       border: isLight ? "border-blue-200" : "border-blue-500/20", 
@@ -57,7 +57,7 @@ const Alert = ({ type, children }: { type: string, children: React.ReactNode }) 
         <Icon size={24} />
       </div>
       <div className="text-[15px] leading-relaxed font-medium text-(--t-text-secondary)">
-        <BalancedText>{children as string}</BalancedText>
+        <BalancedText as="span">{children as string}</BalancedText>
       </div>
     </div>
   );
@@ -84,7 +84,7 @@ const HeadingWithAnchor = ({ id, level, children }: { id: string, level: 2 | 3, 
         >
           {copied ? <Check size={14} className="text-emerald-500 animate-in zoom-in duration-300" /> : '#'}
         </button>
-        <BalancedText>{children as string}</BalancedText>
+        <BalancedText as="span">{children as string}</BalancedText>
       </h2>
     );
   }
@@ -97,10 +97,12 @@ const HeadingWithAnchor = ({ id, level, children }: { id: string, level: 2 | 3, 
       >
         {copied && <Check size={10} className="absolute -top-1 -left-1 text-emerald-500 animate-in zoom-in" />}
       </button>
-      <BalancedText>{children as string}</BalancedText>
+      <BalancedText as="span">{children as string}</BalancedText>
     </h3>
   );
 };
+
+import type { Components } from 'react-markdown';
 
 export const MarkdownRenderer = memo(({ content }: { content: string }) => {
   // Process custom containers like :::tip before passing to ReactMarkdown
@@ -111,7 +113,7 @@ export const MarkdownRenderer = memo(({ content }: { content: string }) => {
     // Replace :::type ... ::: with <div class="callout" data-type="type"> ... </div>
     const containerRegex = /:::(\w+)\n([\s\S]*?)\n:::/g;
     result = result.replace(containerRegex, (_match, type, inner) => {
-        return `<div class="callout" data-type="${type}">${inner}</div>`;
+        return `<div class="callout" data-type="${type}">${inner}</div>` + "\n";
     });
 
     return result;
@@ -119,48 +121,51 @@ export const MarkdownRenderer = memo(({ content }: { content: string }) => {
 
   if (!content) return null;
 
-  const components: any = {
-    h1: ({ children }: any) => (
+  const components: Components = {
+    h1: ({ children }) => (
       <header className="mb-10 pt-8">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-black tracking-tight leading-[1.1] text-(--t-text)">
-          <BalancedText>{children}</BalancedText>
+          <BalancedText as="span">{children as string}</BalancedText>
         </h1>
       </header>
     ),
-    h2: ({ children }: any) => {
-      const id = children.toString().toLowerCase().replace(/\s+/g, '-');
+    h2: ({ children }) => {
+      const id = children?.toString().toLowerCase().replace(/\s+/g, '-') || '';
       return <HeadingWithAnchor id={id} level={2}>{children}</HeadingWithAnchor>;
     },
-    h3: ({ children }: any) => {
-      const id = children.toString().toLowerCase().replace(/\s+/g, '-');
+    h3: ({ children }) => {
+      const id = children?.toString().toLowerCase().replace(/\s+/g, '-') || '';
       return <HeadingWithAnchor id={id} level={3}>{children}</HeadingWithAnchor>;
     },
-    p: ({ children }: any) => (
+    p: ({ children }) => (
       <p className="text-[16px] text-(--t-text-secondary) leading-[1.7] mb-5 font-normal tracking-[-0.01em] max-w-[75ch]">
         {children}
       </p>
     ),
-    ul: ({ children }: any) => (
+    ul: ({ children }) => (
       <ul className="list-none mb-8 space-y-3 text-(--t-text-secondary) ml-2">
         {children}
       </ul>
     ),
-    li: ({ children }: any) => (
+    li: ({ children }) => (
       <li className="flex items-start gap-4">
         <div className="mt-[11px] w-1.5 h-1.5 rounded-full bg-(--t-accent) shrink-0 shadow-[0_0_8px_rgba(var(--t-accent-rgb),0.5)] opacity-60" />
         <span className="text-[17px] sm:text-[18px] leading-[1.7] opacity-90">{children}</span>
       </li>
     ),
-    blockquote: ({ children }: any) => (
+    blockquote: ({ children }) => (
       <blockquote className="my-6 pl-6 py-3 border-l-4 border-(--t-accent) italic text-[17px] text-(--t-text-secondary) leading-relaxed bg-(--t-accent)/5 rounded-r-xl">
-        <BalancedText>{children}</BalancedText>
+        <BalancedText as="span">{children as string}</BalancedText>
       </blockquote>
     ),
-    code: ({ node, inline, className, children, ...props }: any) => {
+    code: ({ className, children, ...props }) => {
+      const isInline = !props.node?.position; // Simplified inline check
       const match = /language-(\w+)/.exec(className || '');
       const code = String(children).replace(/\n$/, '');
       
-      if (!inline && match) {
+      const inlineStyle = "bg-(--t-accent)/6 text-(--t-accent) px-1.5 py-0.5 rounded-md text-[13px] font-mono border border-(--t-accent)/10 font-semibold";
+
+      if (!isInline && match) {
         return (
           <CodeBlock 
             code={code} 
@@ -170,47 +175,47 @@ export const MarkdownRenderer = memo(({ content }: { content: string }) => {
         );
       }
       return (
-        <code className="bg-(--t-accent)/6 text-(--t-accent) px-1.5 py-0.5 rounded-md text-[13px] font-mono border border-(--t-accent)/10 font-semibold" {...props}>
+        <code className={inlineStyle} {...props}>
           {children}
         </code>
       );
     },
-    table: ({ children }: any) => (
+    table: ({ children }) => (
       <div className="overflow-x-auto my-8 rounded-xl border border-(--t-border) bg-(--t-bg-secondary)/30 backdrop-blur-sm">
         <table className="w-full text-left border-collapse min-w-[600px]">
           {children}
         </table>
       </div>
     ),
-    thead: ({ children }: any) => (
+    thead: ({ children }) => (
       <thead>
         <tr className="border-b border-(--t-border-strong) bg-(--t-accent)/5">
           {children}
         </tr>
       </thead>
     ),
-    th: ({ children }: any) => (
+    th: ({ children }) => (
       <th className="px-6 py-5 text-[11px] font-black uppercase tracking-widest text-(--t-accent)">
         {children}
       </th>
     ),
-    td: ({ children }: any) => (
+    td: ({ children }) => (
       <td className="px-6 py-5 text-[15px] text-(--t-text-secondary) font-medium">
         {children}
       </td>
     ),
     hr: () => <hr className="my-10 border-(--t-border) border-t" />,
-    img: ({ src, alt }: any) => (
+    img: ({ src, alt }) => (
       <div className="my-10 rounded-2xl overflow-hidden shadow-xl border border-(--t-border)">
         <img src={src} alt={alt} className="w-full h-auto block" />
         {alt && (
            <div className="px-5 py-3 bg-(--t-bg-secondary) border-t border-(--t-border) text-[11px] font-medium text-(--t-text-muted) text-center italic">
              {alt}
            </div>
-        )}
+         )}
       </div>
     ),
-    a: ({ href, children }: any) => {
+    a: ({ href, children }) => {
         const isExternal = href?.startsWith('http');
         if (isExternal) {
             return (
@@ -220,14 +225,14 @@ export const MarkdownRenderer = memo(({ content }: { content: string }) => {
             );
         }
         return (
-            <Link to={href} className="text-(--t-accent) hover:underline font-medium">
+            <Link to={href || ''} className="text-(--t-accent) hover:underline font-medium">
                 {children}
             </Link>
         );
     },
-    div: ({ node, className, children, ...props }: any) => {
+    div: ({ className, children, ...props }) => {
         if (className === 'callout') {
-            const type = props['data-type'] || 'info';
+            const type = (props as Record<string, unknown>)['data-type'] as string || 'info';
             return <Alert type={type}>{children}</Alert>;
         }
         return <div className={className} {...props}>{children}</div>;

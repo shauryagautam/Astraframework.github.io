@@ -3,16 +3,21 @@ import { Hero } from './components/Hero'
 import { FeatureGrid } from './components/FeatureGrid'
 import { GettingStarted } from './components/GettingStarted'
 import { CodeExample } from './components/CodeExample'
-import { useTheme } from './context/ThemeContext'
+import { useTheme } from './hooks/useTheme'
 import { DocsPage } from './pages/DocsPage'
 import { DocsLanding } from './pages/DocsLanding'
 
 import { MarketingLayout } from './layouts/MarketingLayout'
 import { ScrollToHashElement } from './components/ScrollToHashElement'
+import { SEO } from './components/shared/SEO'
 
 function HomePage() {
   return (
     <MarketingLayout>
+      <SEO 
+        title="Modern Go Framework" 
+        description="Astra is a high-performance, full-stack Go framework designed for modern backend developers. Build faster, safer, and more scalable applications."
+      />
       <Hero />
       
       <div className="py-12 border-y border-(--t-border) bg-(--t-bg-secondary) overflow-hidden whitespace-nowrap">

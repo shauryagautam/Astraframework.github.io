@@ -1,5 +1,6 @@
 import { Sun, Moon, Droplets } from 'lucide-react';
-import { useTheme, type Theme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
+import type { Theme } from '../types/theme';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 

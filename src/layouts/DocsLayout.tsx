@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { Grain } from '../components/Grain';
 import { Header } from '../components/Header';
 import { DocsSidebar } from '../components/DocsSidebar';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 import { Menu, X, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { cn } from '../lib/utils';
 
@@ -20,7 +21,7 @@ export const DocsLayout = ({ children }: LayoutProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-(--t-bg) text-(--t-text) transition-colors duration-400 flex flex-col">
+    <div className="min-h-screen bg-(--t-bg) text-(--t-text) transition-colors duration-400 flex flex-col overflow-x-hidden selection:bg-(--t-accent) selection:text-(--t-accent-text)">
       {isGlass && (
         <div className="liquid-glass-bg" aria-hidden="true">
           <div className="liquid-glass-orb-1 opacity-20" />
@@ -30,25 +31,25 @@ export const DocsLayout = ({ children }: LayoutProps) => {
       <Grain />
       <Header />
       
-      <div className="flex-1 flex max-w-[1600px] mx-auto w-full pt-16 md:pt-20 px-4 md:px-8 relative gap-8 lg:gap-12">
+      <div className="flex-1 block md:flex max-w-[1600px] mx-auto w-full pt-16 md:pt-20 px-0 md:px-8 relative gap-0 md:gap-8 lg:gap-12 overflow-x-hidden md:overflow-visible">
         {/* Sidebar */}
         <aside className={cn(
-          "fixed inset-0 z-40 md:sticky md:top-20 md:h-[calc(100vh-5rem)] md:block transition-all duration-500 ease-in-out",
-          isSidebarOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0 pointer-events-none md:pointer-events-auto",
-          "md:translate-x-0 md:opacity-100"
+          "fixed inset-y-0 left-0 z-50 w-72 md:sticky md:top-20 md:h-[calc(100vh-5rem)] md:block transition-all duration-500 ease-in-out md:w-64",
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}>
           <div className={cn(
-            "absolute inset-0 bg-black/60 backdrop-blur-sm md:hidden transition-opacity duration-500",
+            "fixed inset-0 bg-black/60 backdrop-blur-sm md:hidden transition-opacity duration-500",
             isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           )} onClick={() => setIsSidebarOpen(false)} />
-          <div className="relative w-64 h-full bg-(--t-bg) border-r border-(--t-border) shadow-2xl md:shadow-none md:border-none">
+          
+          <div className="relative h-full bg-(--t-bg) border-r border-(--t-border) shadow-2xl md:shadow-none md:border-none overflow-y-auto custom-scrollbar">
              <DocsSidebar onItemClick={() => setIsSidebarOpen(false)} />
           </div>
         </aside>
 
         {/* Main Content Area */}
-        <main className="flex-1 min-w-0 flex flex-col lg:flex-row relative z-0 items-start">
-          <div className="flex-1 min-w-0 py-8 md:py-12">
+        <main className="flex-1 min-w-0 flex flex-col lg:flex-row relative z-0 items-start px-4 md:px-0 max-w-full overflow-x-hidden">
+          <div className="flex-1 min-w-0 py-8 md:py-12 max-w-full">
             {children}
             <DocsTopicSearch />
           </div>
@@ -58,10 +59,10 @@ export const DocsLayout = ({ children }: LayoutProps) => {
           {/* Mobile Sidebar Toggle */}
           <button 
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="md:hidden fixed bottom-6 right-6 z-50 p-4 rounded-full bg-(--t-accent) text-(--t-accent-text) shadow-xl hover:scale-110 active:scale-95 transition-all"
+            className="md:hidden fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-70 p-4 rounded-full bg-(--t-accent) text-(--t-accent-text) shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:scale-110 active:scale-95 transition-all border border-white/10"
             aria-label="Toggle Sidebar"
           >
-            {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+            {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </main>
       </div>
@@ -70,7 +71,7 @@ export const DocsLayout = ({ children }: LayoutProps) => {
         <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
           <div className="space-y-4">
              <div className="flex items-center gap-3">
-                <img src="/astra-icon.svg" alt="Astra" className="w-5 h-5 opacity-80" />
+                <img src={`${import.meta.env.BASE_URL}astra-icon.svg`} alt="Astra" className="w-5 h-5 opacity-80" />
                 <span className="text-[11px] font-black uppercase tracking-tighter">Astra</span>
              </div>
              <p className="text-[10px] font-medium uppercase tracking-widest opacity-40 leading-relaxed max-w-[200px]">
@@ -86,8 +87,8 @@ export const DocsLayout = ({ children }: LayoutProps) => {
                <h5 className="text-[10px] font-black uppercase tracking-widest opacity-20">Project</h5>
                <nav className="flex flex-col gap-2.5 text-[11px] font-bold uppercase tracking-tighter">
                   <a href="https://github.com/shauryagautam/Astra" className="hover:text-(--t-accent) transition-colors">GitHub</a>
-                  <a href="/docs" className="hover:text-(--t-accent) transition-colors">Documentation</a>
-                  <a href="/#showcase" className="hover:text-(--t-accent) transition-colors">Showcase</a>
+                  <Link to="/docs" className="hover:text-(--t-accent) transition-colors">Documentation</Link>
+                  <Link to="/#showcase" className="hover:text-(--t-accent) transition-colors">Showcase</Link>
                </nav>
             </div>
             

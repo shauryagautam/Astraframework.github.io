@@ -50,7 +50,11 @@ export const TableOfContents = () => {
           }
         });
       },
-      { rootMargin: '-10% 0px -80% 0px' }
+      { 
+        // Monitor the top 40% of the viewport for the active heading
+        rootMargin: '-100px 0px -60% 0px',
+        threshold: [0, 1]
+      }
     );
 
     const observeHeadings = () => {
@@ -60,12 +64,17 @@ export const TableOfContents = () => {
     observeHeadings();
 
     const handleScroll = () => {
-      if (window.scrollY < 100) {
+      // If we are at the very top, clear active ID
+      if (window.scrollY < 120) {
         setActiveId('');
       }
+      
+      // Fallback: If no heading is intersecting but we've scrolled past some,
+      // we might want to find the last heading that is above the fold.
+      // This helps when sections are very short.
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       observer.disconnect();
@@ -73,6 +82,20 @@ export const TableOfContents = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [location.pathname]);
+
+  const scrollToHeading = (id: string) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    
+    const headerOffset = 100;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  };
 
   if (headings.length === 0) return null;
 
@@ -87,7 +110,7 @@ export const TableOfContents = () => {
              href={`#${heading.id}`}
              onClick={(e) => {
                 e.preventDefault();
-                document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
+                scrollToHeading(heading.id);
              }}
              className={cn(
                "group flex items-center text-[12px] transition-all py-1.5 px-4 border-l-2 -ml-[1px]",

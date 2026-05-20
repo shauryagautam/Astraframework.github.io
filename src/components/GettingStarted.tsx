@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Download, PlusCircle, Play, ArrowRight } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 import { cn } from '../lib/utils';
 import { CopyButton } from './shared/CopyButton';
 import { BalancedText } from './shared/BalancedText';

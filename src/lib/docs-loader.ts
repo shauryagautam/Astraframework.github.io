@@ -48,8 +48,7 @@ const parseFrontmatter = (content: string) => {
 };
 
 // Use Vite's Glob Import to scan for manual markdown files
-// We match all .md files in the docs-content folder recursively
-const modules = import.meta.glob('/docs-content/**/*.md', { query: '?raw', eager: true });
+const modules = import.meta.glob<{ default: string }>('/docs-content/**/*.md', { query: '?raw', eager: true });
 
 // Manual mapping for files without frontmatter or folders to place them in correct categories
 const fileToCategoryMap: Record<string, string> = {
@@ -68,7 +67,7 @@ export const getDocsData = (): DocCategory[] => {
   const categoriesMap: Record<string, DocSection[]> = {};
 
   Object.entries(modules).forEach(([path, mod]) => {
-    const content = (mod as any).default as string;
+    const content = mod.default;
     const { metadata, body } = parseFrontmatter(content);
     
     // Extract ID (filename without leading numbering and extension)

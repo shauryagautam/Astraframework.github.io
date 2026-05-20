@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code, Share2, Database, ShieldCheck, Zap } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 import { CopyButton } from './shared/CopyButton';
 
 const examples = [
